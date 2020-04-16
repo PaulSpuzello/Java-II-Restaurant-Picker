@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dmacc.beans.Restaurant;
@@ -62,9 +63,6 @@ public class WebController {
 	    repo.delete(r);
 	    return viewAllRestaurants(model);
 	}
-	@RequestMapping("/sortBy/{name}")
-	public String list(Model model,@RequestParam String name) {
-		return name;
-		
-	}
+
+
 }
