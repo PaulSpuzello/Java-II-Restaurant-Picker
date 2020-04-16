@@ -8,13 +8,14 @@
 <form>
 	<table>
 		<tr th:each="currentRestaurant : ${restaurants}">
+			<td th:text="${currentRestaurant.id}"/>
 			<td th:text="${currentRestaurant.name}"/>
 			<td th:text="${currentRestaurant.avgPrice}"/>
 			<td th:text="${currentRestaurant.rating}"/>
-			<td th:text="${currentRestaurant.restDetail.type}"/>
-			<td th:text="${currentRestaurant.restDetail.partySize}"/>
-			<td th:text="${currentRestaurant.restDetail.distance}"/>
-			<td th:text="${currentRestaurant.restDetail.hasKidsMenu}"/>
+			<td th:text="${currentRestaurant.restaurantDetail.type}"/>
+			<td th:text="${currentRestaurant.restaurantDetail.partySize}"/>
+			<td th:text="${currentRestaurant.restaurantDetail.distance}"/>
+			<td th:text="${currentRestaurant.restaurantDetail.hasKidsMenu}"/>
 			<td th:text="${currentRestaurant.address.street}"/>
 			<td th:text="${currentRestaurant.address.city}"/>
 			<td th:text="${currentRestaurant.address.state}"/>
