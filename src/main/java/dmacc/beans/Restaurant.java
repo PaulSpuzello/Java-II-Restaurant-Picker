@@ -36,6 +36,23 @@ public class Restaurant {
 		this.avgPrice = avg;
 		this.rating = rating;
 	}
+	
+	public Restaurant(int id, String name, double avg, int rating, Address add) {
+		this.id = id;
+		this.name = name;
+		this.avgPrice = avg;
+		this.rating = rating;
+		this.address = add;
+	}
+	
+	public Restaurant(int id, String name, double avg, int rating, Address add, RestaurantDetail restDet) {
+		this.id = id;
+		this.name = name;
+		this.avgPrice = avg;
+		this.rating = rating;
+		this.address = add;
+		this.restDetail = restDet;
+	}
 
 	public long getId() {
 		return id;

@@ -22,7 +22,7 @@ public class WebController {
 			return addNewRestaurant(model);
 		}
 		
-		model.addAttribute("Restaurants", repo.findAll());
+		model.addAttribute("restaurants", repo.findAll());
 		return "results";
 	}
 	
