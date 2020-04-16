@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form>
+	<table>
+		<tr th:each="currentRestaurant : ${restaurants}">
+			<td th:text="${currentRestaurant.id}"/>
+			<td th:text="${currentRestaurant.name}"/>
+			<td th:text="${currentRestaurant.avgPrice}"/>
+			<td th:text="${currentRestaurant.rating}"/>
+			<td th:text="${currentRestaurant.restaurantDetail.type}"/>
+			<td th:text="${currentRestaurant.restaurantDetail.partySize}"/>
+			<td th:text="${currentRestaurant.restaurantDetail.distance}"/>
+			<td th:text="${currentRestaurant.restaurantDetail.hasKidsMenu}"/>
+			<td th:text="${currentRestaurant.address.street}"/>
+			<td th:text="${currentRestaurant.address.city}"/>
+			<td th:text="${currentRestaurant.address.state}"/>
+			<td><a th:href="@{/edit/{id}(id=${currentRestaurant.id})}">Edit</a></td>
+			<td><a th:href="@{/delete/{id}(id=${currentRestaurant.id})}">Delete</a></td>
+		</tr>
+	</table>
+</form>
+<a href="../inputRestaurant">Add a new restaurant</a>
+</body>
+</html>
