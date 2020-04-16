@@ -40,7 +40,7 @@ public class RestaurantDetail {
 	public void setDistance(int distance) {
 		this.distance = distance;
 	}
-	public boolean isHasKidsMenu() {
+	public boolean getHasKidsMenu() {
 		return hasKidsMenu;
 	}
 	public void setHasKidsMenu(boolean hasKidsMenu) {
