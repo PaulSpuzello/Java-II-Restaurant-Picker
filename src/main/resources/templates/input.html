@@ -6,17 +6,26 @@
 </head>
 <body>
 <form th:object="${newRestaurant}" th:action="@{/update/{id}(id=${newRestaurant.id})}" method=POST>
-Name: <input name="name" size="20" th:field="*{name}"><br />
+
+Restaurant  Name: <input name="name" size="20" th:field="*{name}"><br />
 Average Price: <input name="avgPrice" size="20" th:field="*{avgPrice}"><br />
 Rating: <input name="rating" size="20" th:field="*{rating}"><br />
-<!--  
+
 Street: <input name="address.street" size="20" th:field="*{address.street}"><br />
 City: <input name="address.city" size="20" th:field="*{address.city}"><br />
 State: <input name="address.state" size="20" th:field="*{address.state}"><br />
--->
+
+Type:<input name = "restDetail.type" size= "20" the:field="*{restDetail.type}"><br/>
+Distance: <input name="restDetail.distance" size="20" th:field = "*{restDetail.distance}"> <br />
+Party Size: <input name = "restDetail.partySize" size= "20" the:field="*{restDetail.partySize}"><br/>
+Has a kids Menu:<input name = "restDetail.hasKidsMenu" size= "20" the:field="*{restDetail.hasKidsMenu}"><br/>
+
 
 <input name="Submit" type="submit" value="submit" />
 </form>
+
+
+
 <a href="../viewAll">View All Restaurants</a>
 
 </body>

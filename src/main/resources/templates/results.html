@@ -5,17 +5,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+<p> sort table by clicking the button</p>
+<p><button onclick ="sortTable()">Sort</button></p>
 <form>
-	<table>
-		<tr th:each="currentRestaurant : ${restaurants}">
-			<td th:text="${currentRestaurant.id}"/>
-			<td th:text="${currentRestaurant.name}"/>
+	<table id = 32>
+		<tr th:each="currentRestaurant : ${restaurants}">			
+			<td th:text="${currentRestaurant.name.toString()}"/>
 			<td th:text="${currentRestaurant.avgPrice}"/>
 			<td th:text="${currentRestaurant.rating}"/>
-			<td th:text="${currentRestaurant.restaurantDetail.type}"/>
-			<td th:text="${currentRestaurant.restaurantDetail.partySize}"/>
-			<td th:text="${currentRestaurant.restaurantDetail.distance}"/>
-			<td th:text="${currentRestaurant.restaurantDetail.hasKidsMenu}"/>
+			<td th:text="${currentRestaurant.restDetail.type}"/>
+			<td th:text="${currentRestaurant.restDetail.partySize}"/>
+			<td th:text="${currentRestaurant.restDetail.distance}"/>
+			<td th:text="${currentRestaurant.restDetail.hasKidsMenu}"/>
 			<td th:text="${currentRestaurant.address.street}"/>
 			<td th:text="${currentRestaurant.address.city}"/>
 			<td th:text="${currentRestaurant.address.state}"/>
@@ -25,5 +26,46 @@
 	</table>
 </form>
 <a href="../inputRestaurant">Add a new restaurant</a>
+
+
+<script>
+function sortTable() {
+	
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById(32);
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("td")[0];
+      y = rows[i + 1].getElementsByTagName("td")[0];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+</script>
+
+
 </body>
 </html>
