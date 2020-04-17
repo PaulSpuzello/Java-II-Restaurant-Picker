@@ -20,7 +20,7 @@ public class WebController {
 	@Autowired
 	RestaurantRepository repo;
 	
-	@GetMapping({"/", "viewAll" })
+	@GetMapping("/viewAll")
 	public String viewAllRestaurants(Model model) {
 		if(repo.findAll().isEmpty()) {
 			return addNewRestaurant(model);
