@@ -3,7 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<style>
+<style type="text/css">
 table {
   border-spacing: 0;
   width: 100%;
@@ -16,14 +16,46 @@ th, td {
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2
+  background-color: #f2f2f2;
+  }
+
+body {
+	background: #F0C4B6 !important; 
+}
+
 }
 </style>
+<link rel="stylesheet" type="text/css" href="css/rest.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
 </head>
+<header>
+	<section id="top"></section>
+	<img class="img-fluid center" src="images/food-finder-banner.png" alt="Food Finder Banner" >
+</header>
+
+<nav class="navbar navbar-expand navbar-dark" style="background-color: #DD876D;">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="viewAll">Find Restaurants</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="inputRestaurant">Add Your Restaurant</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <body>
 
+<div id="container">
+<main>
 <form>
-<p> sort table by clicking the button</p>
+<p> Sort table by clicking the button:</p>
 <p><button onclick ="sortTable()">Sort</button></p>
 	<table id = "32">
 		<tr><th>ID</th>
@@ -57,6 +89,9 @@ tr:nth-child(even) {
 	</table>
 </form>
 <a href="../inputRestaurant">Add a new restaurant</a>
+</main>
+</div>
+
 <script>
 function sortTable() {
 	alert("hello")
