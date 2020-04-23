@@ -37,8 +37,8 @@ public class WebController {
 		model.addAttribute("restaurants", repo.findByPrice());
 		return "results";
 	}
-	
-	@GetMapping("/viewBySpecificPrice_{price1}_{price2}")
+  
+  @GetMapping("/viewBySpecificPrice_{price1}_{price2}")
 	public String viewSpecificPrice(@PathVariable("price1") double price1, @PathVariable("price2") double price2, Model model) {
 		if(repo.findAll().isEmpty()) {
 			return addNewRestaurant(model);
@@ -58,6 +58,76 @@ public class WebController {
 		return "results";
 	}
 	
+  @GetMapping("/viewByRating")
+	public String viewAllByRating(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewRestaurant(model);
+		}
+		
+		model.addAttribute("restaurants", repo.findByRating());
+		return "results";
+	}
+	
+	@GetMapping("/viewByPartySize")
+	public String viewAllByPartySize(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewRestaurant(model);
+		}
+		
+		model.addAttribute("restaurants", repo.findByPartySize());
+		return "results";
+	}
+	
+	@GetMapping("/viewByDistance")
+	public String viewAllByDistance(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewRestaurant(model);
+		}
+		
+		model.addAttribute("restaurants", repo.findByDistance());
+		return "results";
+	}
+	
+	@GetMapping("/viewByKidsMenu")
+	public String viewAllByKidsMenu(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewRestaurant(model);
+		}
+		
+		model.addAttribute("restaurants", repo.findByKidsMenu());
+		return "results";
+	}
+	
+	@GetMapping("/viewByStreet")
+	public String viewAllByStreet(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewRestaurant(model);
+		}
+		
+		model.addAttribute("restaurants", repo.findByStreet());
+		return "results";
+	}
+	
+	@GetMapping("/viewByCity")
+	public String viewAllByCity(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewRestaurant(model);
+		}
+		
+		model.addAttribute("restaurants", repo.findByCity());
+		return "results";
+	}
+	
+	@GetMapping("/viewByState")
+	public String viewAllByState(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewRestaurant(model);
+		}
+		
+		model.addAttribute("restaurants", repo.findByState());
+		return "results";
+	}
+  
 	@GetMapping("/inputRestaurant")
 	public String addNewRestaurant(Model model) {
 		Restaurant r = new Restaurant();
