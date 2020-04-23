@@ -24,17 +24,17 @@ public class WebController {
 			return addNewRestaurant(model);
 		}
 		
-		model.addAttribute("restaurants", repo.findAll());
+		model.addAttribute("restaurants", repo.findByName());
 		return "results";
 	}
 	
-	@GetMapping("/viewTest")
-	public String viewOneRestaurant(Model model) {
+	@GetMapping("/viewByPrice")
+	public String viewAllByPrice(Model model) {
 		if(repo.findAll().isEmpty()) {
 			return addNewRestaurant(model);
 		}
 		
-		model.addAttribute("restaurants", repo.findBySingle(""));
+		model.addAttribute("restaurants", repo.findByPrice());
 		return "results";
 	}
 	
