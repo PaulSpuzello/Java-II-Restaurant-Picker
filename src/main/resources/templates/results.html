@@ -31,7 +31,7 @@ body {
 </head>
 <header>
 	<section id="top"></section>
-	<img class="img-fluid center" src="images/food-finder-banner.png" alt="Food Finder Banner" >
+	<img class="img-fluid center" src="../images/food-finder-banner.png" alt="Food Finder Banner" >
 </header>
 
 <nav class="navbar navbar-expand navbar-dark" style="background-color: #DD876D;">
@@ -41,10 +41,10 @@ body {
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="viewAll">Find Restaurants</a>
+        <a class="nav-link" href="../viewAll">Find Restaurants</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="inputRestaurant">Add Your Restaurant</a>
+        <a class="nav-link" href="../inputRestaurant">Add Your Restaurant</a>
       </li>
     </ul>
   </div>
@@ -54,9 +54,21 @@ body {
 
 <div id="container">
 <main>
+<form id="filterForm1">
+<p>Search by price:</p>
+<label for="number1">Lowest Price:</label>
+<input type="number" id="price1" name="price1">
+<label for="number2">Highest Price:</label>
+<input type="number" id="price2" name="price2">
+<button type="button" onclick="submitPrice()">Search Price</button>
+</form>
+<form id="filterForm2">
+<p>Search by Name:</p>
+<label for="name1">Name:</label>
+<input type="text" id="name1" name="name1">
+<button type="button" onclick="submitName()">Search Name</button>
+</form>
 <form>
-<p> Sort table by clicking the button:</p>
-<p><button onclick ="sortTable()">Sort</button></p>
 	<table id = "32">
 		<tr><th>ID</th>
 		<th><a href="/viewAll">Name</a></th>
@@ -93,44 +105,20 @@ body {
 </div>
 
 <script>
-function sortTable() {
-	alert("hello")
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = currentRestaurant.getElementById("32");
-  switching = true;
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[1];
-      y = rows[i + 1].getElementsByTagName("TD")[1];
-      //check if the two rows should switch place:
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        //if so, mark as a switch and break the loop:
-        shouldSwitch = true;
-        break;
-      }
-    }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-}
+	function submitPrice(){
+		var p1 = document.getElementById("price1").value;
+		var p2 = document.getElementById("price2").value;
+		
+		document.getElementById("filterForm1").action = "/viewBySpecificPrice_" + p1 + "_" + p2;  
+		document.getElementById("filterForm1").submit();
+	}
+	
+	function submitName(){
+		var n1 = document.getElementById("name1").value;
+		
+		document.getElementById("filterForm2").action = "/viewBySpecificName_" + n1;  
+		document.getElementById("filterForm2").submit();
+	}
 </script>
-
-
-
 </body>
 </html>

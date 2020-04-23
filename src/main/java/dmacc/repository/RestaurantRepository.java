@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import dmacc.beans.Restaurant;
@@ -28,6 +29,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 	@Query(value = FIND_PRICE, nativeQuery = true)
 	List<Restaurant> findByPrice();
 	
+
 	@Query(value = FIND_RATING, nativeQuery = true)
 	List<Restaurant> findByRating();
 	
@@ -51,4 +53,11 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 	
 	@Query(value = FIND_STATE, nativeQuery = true)
 	List<Restaurant> findByState();
+
+	@Query("select r from Restaurant r where r.avgPrice > :lowprice and r.avgPrice < :highprice")
+	List<Restaurant> findBySpecific(@Param("lowprice") double lowprice, @Param("highprice") double highprice);
+	
+	@Query("select r from Restaurant r where r.name = :name")
+	List<Restaurant> findBySpecificName(@Param("name") String name);
+
 }

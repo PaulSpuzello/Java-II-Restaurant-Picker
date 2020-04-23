@@ -37,24 +37,34 @@ public class WebController {
 		model.addAttribute("restaurants", repo.findByPrice());
 		return "results";
 	}
+  
+  @GetMapping("/viewBySpecificPrice_{price1}_{price2}")
+	public String viewSpecificPrice(@PathVariable("price1") double price1, @PathVariable("price2") double price2, Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewRestaurant(model);
+		}
+		
+		model.addAttribute("restaurants", repo.findBySpecific(price1, price2));
+		return "results";
+	}
 	
-	@GetMapping("/viewByRating")
+	@GetMapping("/viewBySpecificName_{name}")
+	public String viewSpecificPrice(@PathVariable("name") String name, Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewRestaurant(model);
+		}
+		
+		model.addAttribute("restaurants", repo.findBySpecificName(name));
+		return "results";
+	}
+	
+  @GetMapping("/viewByRating")
 	public String viewAllByRating(Model model) {
 		if(repo.findAll().isEmpty()) {
 			return addNewRestaurant(model);
 		}
 		
 		model.addAttribute("restaurants", repo.findByRating());
-		return "results";
-	}
-	
-	@GetMapping("/viewByType")
-	public String viewAllByType(Model model) {
-		if(repo.findAll().isEmpty()) {
-			return addNewRestaurant(model);
-		}
-		
-		model.addAttribute("restaurants", repo.findByType());
 		return "results";
 	}
 	
@@ -117,7 +127,7 @@ public class WebController {
 		model.addAttribute("restaurants", repo.findByState());
 		return "results";
 	}
-	
+  
 	@GetMapping("/inputRestaurant")
 	public String addNewRestaurant(Model model) {
 		Restaurant r = new Restaurant();
