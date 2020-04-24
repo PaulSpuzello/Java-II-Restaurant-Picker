@@ -9,17 +9,19 @@ public class RestaurantDetail {
 	private int partySize;
 	private int distance;
 	private boolean hasKidsMenu;
+	public String descr;
 	
 	public RestaurantDetail() {
 		super();
 	}
 	
-	public RestaurantDetail(String type, int partySize, int distance, boolean hasKidsMenu) {
+	public RestaurantDetail(String type, int partySize, int distance, boolean hasKidsMenu, String descr) {
 		super();
 		this.type = type;
 		this.partySize = partySize;
 		this.distance = distance;
 		this.hasKidsMenu = hasKidsMenu;
+		this.descr=descr;
 	}
 	
 	public String getType() {
@@ -45,6 +47,14 @@ public class RestaurantDetail {
 	}
 	public void setHasKidsMenu(boolean hasKidsMenu) {
 		this.hasKidsMenu = hasKidsMenu;
+	}
+
+	public String getDescr() {
+		return descr;
+	}
+
+	public void setDescr(String descr) {
+		this.descr = descr;
 	}
 	
 	

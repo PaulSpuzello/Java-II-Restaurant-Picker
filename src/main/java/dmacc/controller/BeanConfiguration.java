@@ -17,7 +17,7 @@ public class BeanConfiguration {
 	
 	@Bean
 	public RestaurantDetail restaurantDetail() {
-		RestaurantDetail bean = new RestaurantDetail("Classy", 16, 21, false);
+		RestaurantDetail bean = new RestaurantDetail("Classy", 16, 21, false,"hello");
 		return bean;
 	}
 	

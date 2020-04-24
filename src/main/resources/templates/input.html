@@ -1,10 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<style type="text/css">
+table {
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+  }
+
+body {
+	background: #F0C4B6 !important; 
+}
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="css/rest.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+</head>
+
+<header>
+	<section id="top"></section>
+	<img class="img-fluid center" src="../images/food-finder-banner.png" alt="Food Finder Banner" >
+</header>
+<nav class="navbar navbar-expand navbar-dark" style="background-color: #DD876D;">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../viewAll">Find Restaurants</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="../inputRestaurant">Add Your Restaurant</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 <meta charset="UTF-8">
 <title>Insert New Restaurant</title>
-</head>
+
 <body>
+
 <form th:object="${newRestaurant}" th:action="@{/update/{id}(id=${newRestaurant.id})}" method=POST>
 
 Restaurant  Name: <input name="name" size="20" th:field="*{name}"><br />
@@ -15,10 +62,12 @@ Street: <input name="address.street" size="20" th:field="*{address.street}"><br 
 City: <input name="address.city" size="20" th:field="*{address.city}"><br />
 State: <input name="address.state" size="20" th:field="*{address.state}"><br />
 
-Type:<input name = "restDetail.type" size= "20" the:field="*{restDetail.type}"><br/>
+Type:<input name = "restDetail.type" size= "20" th:field="*{restDetail.type}"><br/>
 Distance: <input name="restDetail.distance" size="20" th:field = "*{restDetail.distance}"> <br />
-Party Size: <input name = "restDetail.partySize" size= "20" the:field="*{restDetail.partySize}"><br/>
-Has a kids Menu:<input name = "restDetail.hasKidsMenu" size= "20" the:field="*{restDetail.hasKidsMenu}"><br/>
+Party Size: <input name = "restDetail.partySize" size= "20" th:field="*{restDetail.partySize}"><br/>
+Has a kids Menu:<input name = "restDetail.hasKidsMenu" size= "20" th:field="*{restDetail.hasKidsMenu}"><br/>
+
+Description:<textarea name = "restDetail.descr" rows = "4" cols= "50" th:field="*{restDetail.descr}"></textarea> 
 
 
 
