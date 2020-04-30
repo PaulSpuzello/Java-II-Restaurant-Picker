@@ -77,12 +77,19 @@ body {
 <button type="button" onclick="submitRating()">Search Rating</button>
 </form>
 
-<!-- <form id="filterForm4">
+<form id="filterForm4">
 <p>Search by Rating:</p>
 <label for="partySize1">Party Size:</label>
 <input type="number" id="partySize1" name="partySize1">
 <button type="button" onclick="submitPartySize()">Search Party Size</button>
-</form> -->
+</form> 
+
+<form id="filterForm5">
+<p>Search by Type of Food:</p>
+<label for="type1">Type of Food:</label>
+<input type="text" id="type1" name="type1">
+<button type="button" onclick="submitType()">Search Type of Food</button>
+</form> 
 
 <form>
 	<table id = "32">
@@ -143,12 +150,19 @@ body {
 		document.getElementById("filterForm3").submit();
 	}
 	
-/* 	function submitPartySize(){
+ 	function submitPartySize(){
 		var r1 = document.getElementById("partySize1").value;
 		
 		document.getElementById("filterForm4").action = "/viewBySpecificPartySize_" + r1;  
 		document.getElementById("filterForm4").submit();
-	} */
+	} 
+ 	
+ 	function submitType(){
+		var t1 = document.getElementById("type1").value;
+		
+		document.getElementById("filterForm5").action = "/viewBySpecificType_" + t1;  
+		document.getElementById("filterForm5").submit();
+	} 
 </script>
 </body>
 </html>

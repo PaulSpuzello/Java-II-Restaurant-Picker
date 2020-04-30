@@ -68,14 +68,27 @@ public class WebController {
 		return "results";
 	}
 	
-	/*
-	 * @GetMapping("/viewBySpecificPartySize_{partySize}") public String
-	 * viewSpecificPartySize(@PathVariable("partySize") int partySize, Model model)
-	 * { if(repo.findAll().isEmpty()) { return addNewRestaurant(model); }
-	 * 
-	 * model.addAttribute("restaurants", repo.findBySpecificRating(partySize));
-	 * return "results"; }
-	 */
+	
+	 @GetMapping("/viewBySpecificPartySize_{partySize}") 
+	 public String viewSpecificPartySize(@PathVariable("partySize") int partySize, Model model) { 
+		 if(repo.findAll().isEmpty()) { 
+			 return addNewRestaurant(model); 
+		}
+	  
+	  model.addAttribute("restaurants", repo.findBySpecificRating(partySize));
+	  return "results";
+	}
+	 
+	 @GetMapping("/viewBySpecificType_{type}") 
+	 public String viewSpecificType(@PathVariable("type") String type, Model model) { 
+		 if(repo.findAll().isEmpty()) { 
+			 return addNewRestaurant(model); 
+		}
+	  
+	  model.addAttribute("restaurants", repo.findBySpecificType(type));
+	  return "results";
+	}
+	 
 	
   @GetMapping("/viewByRating")
 	public String viewAllByRating(Model model) {
