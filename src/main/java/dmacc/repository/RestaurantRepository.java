@@ -54,10 +54,12 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 	@Query(value = FIND_STATE, nativeQuery = true)
 	List<Restaurant> findByState();
 
-	@Query("select r from Restaurant r where r.avgPrice > :lowprice and r.avgPrice < :highprice")
+	@Query("select r from Restaurant r where r.avgPrice > :lowprice and r.avgPrice < :highprice order by avgPrice ASC")
 	List<Restaurant> findBySpecific(@Param("lowprice") double lowprice, @Param("highprice") double highprice);
-	
+
 	@Query("select r from Restaurant r where r.name = :name")
 	List<Restaurant> findBySpecificName(@Param("name") String name);
+	
+	
 
 }
