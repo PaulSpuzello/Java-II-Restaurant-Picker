@@ -42,6 +42,11 @@ p {
 	
 }
 
+.vertical {
+	width: 130px;
+	display: block;
+}
+
 p.intro::first-letter {
 	color:green;
 	font-size: x-large;
