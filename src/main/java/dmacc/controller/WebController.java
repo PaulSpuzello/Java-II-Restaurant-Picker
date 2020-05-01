@@ -194,5 +194,10 @@ public class WebController {
 	    return viewAllRestaurants(model);
 	}
 
-
+	@GetMapping("/details/{id}")
+	public String showRestaurantDetails(@PathVariable("id") long id, Model model) {
+		Restaurant c = repo.findById(id).orElse(null);
+		model.addAttribute("detailRestaurant", c);
+		return "details";
+	}
 }

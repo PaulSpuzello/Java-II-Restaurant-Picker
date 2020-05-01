@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Restaurant Details</title>
+<style type="text/css">
+
+body {
+	background: #F0C4B6 !important; 
+}
+
+}
+</style>
+<link rel="stylesheet" type="text/css" href="../css/rest.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+</head>
+
+<body onload="randomImg()">
+<div id="container">
+
+<header>
+	<section id="top"></section>
+	<img class="img-fluid center" src="../images/food-finder-banner.png" alt="Food Finder Banner" >
+</header>
+
+<nav class="navbar navbar-expand navbar-dark" style="background-color: #DD876D;">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../viewAll">Find Restaurants</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="../inputRestaurant">Add Your Restaurant</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<form id="filterForm1">
+<p>Search by price:</p>
+<label for="number1">Lowest Price:</label>
+<input type="number" id="price1" name="price1">
+<label for="number2">Highest Price:</label>
+<input type="number" id="price2" name="price2">
+<button type="button" onclick="submitPrice()">Search Price</button>
+</form>
+
+<form id="filterForm2">
+<p>Search by Name:</p>
+<label for="name1">Name:</label>
+<input type="text" id="name1" name="name1">
+<button type="button" onclick="submitName()">Search Name</button>
+</form>
+
+<form id="filterForm3">
+<p>Search by Rating:</p>
+<label for="rating1">Rating:</label>
+<input type="number" id="rating1" name="rating1">
+<button type="button" onclick="submitRating()">Search Rating</button>
+</form>
+
+<form id="filterForm4">
+<p>Search by Rating:</p>
+<label for="partySize1">Party Size:</label>
+<input type="number" id="partySize1" name="partySize1">
+<button type="button" onclick="submitPartySize()">Search Party Size</button>
+</form> 
+
+<form id="filterForm5">
+<p>Search by Type of Food:</p>
+<label for="type1">Type of Food:</label>
+<input type="text" id="type1" name="type1">
+<button type="button" onclick="submitType()">Search Type of Food</button>
+</form> 
+
+<form th:object="${detailRestaurant}">
+<hr/>
+<img id="restImg" style="float:right; margin-right: 50px; border: solid #DD876D 5px" src="../images/rest1.jpg" alt="Restaurant Image" >
+<h1 style="text-align: left; margin-left: 10px;" th:text="${detailRestaurant.name}"></h1>
+
+<h3 style="text-decoration: underline; margin-left: 20px;">Location</h3>
+<p style="display:inline; margin-left: 30px;" th:text="${detailRestaurant.address.street}"></p>
+<p style="display:inline">-</p>
+<p style="display:inline" th:text="${detailRestaurant.address.city}"></p>
+<p style="display:inline">,</p>
+<p style="display:inline" th:text="${detailRestaurant.address.state}"></p>
+<p></p>
+<p style="display:inline; margin-left: 30px;"><em>Distance from you:</em></p>
+<strong><p style="display:inline;" th:text="${detailRestaurant.restDetail.distance}"></p></strong>
+<p style="display:inline"><strong>miles</strong></p>
+
+<p></p>
+<h3 style="text-decoration: underline; margin-left: 20px;">Description</h3>
+<p style= "margin-left: 30px;" th:text="${detailRestaurant.restDetail.descr}"></p>
+
+<hr/>
+<h4 style="display:inline; margin-left: 20px;">Food Type: (</h4>
+<h4 style="display:inline;" th:text=" ${detailRestaurant.restDetail.type}"></h4>
+<h4 style="display:inline;">)</h4>
+
+<hr/>
+<h4 style="display:inline; margin-left: 20px;">Average Meal Price: (</h4>
+<h4 style="display:inline;" th:text=" ${#numbers.formatCurrency(detailRestaurant.avgPrice)}"></h4>
+<h4 style="display:inline;">)</h4>
+
+<hr/>
+<h4 style="display:inline; margin-left: 20px;">Average Rating: (</h4>
+<h4 style="display:inline;" th:text="${detailRestaurant.rating}"></h4>
+<h4 style="display:inline;">/ 5 )</h4>
+
+<hr/>
+<h4 style="display:inline; margin-left: 20px;">Max Party Size: (</h4>
+<h4 style="display:inline;" th:text="${detailRestaurant.restDetail.partySize}"></h4>
+<h4 style="display:inline;">)</h4>
+
+<hr/>
+<h4 style="display:inline; margin-left: 20px;">Kids Menu: (</h4>
+<h4 style="display:inline;" th:text="${#strings.capitalize(detailRestaurant.restDetail.hasKidsMenu)}"></h4>
+<h4 style="display:inline;">)</h4>
+
+</form>
+<hr/>
+</main>
+</div>
+
+<script>
+	function submitPrice(){
+		
+		var p1 = document.getElementById("price1").value;
+		var p2 = document.getElementById("price2").value;
+		
+		
+		if(p1 =="" || p1 == null){
+			p1 = 0;
+		}
+		if( p2 == "" || p2 == null){
+			p2 = 1000000000000;
+		}
+		
+		document.getElementById("filterForm1").action = "/viewBySpecificPrice_" + p1 + "_" + p2;  
+		document.getElementById("filterForm1").submit();
+		
+		
+	}
+	
+	function submitName(){
+		var n1 = document.getElementById("name1").value;
+		
+		document.getElementById("filterForm2").action = "/viewBySpecificName_" + n1;  
+		document.getElementById("filterForm2").submit();
+	}
+	
+	function submitRating(){
+		var r1 = document.getElementById("rating1").value;
+		
+		document.getElementById("filterForm3").action = "/viewBySpecificRating_" + r1;  
+		document.getElementById("filterForm3").submit();
+	}
+	
+ 	function submitPartySize(){
+		var r1 = document.getElementById("partySize1").value;
+		
+		document.getElementById("filterForm4").action = "/viewBySpecificPartySize_" + r1;  
+		document.getElementById("filterForm4").submit();
+	} 
+ 	
+ 	function submitType(){
+		var t1 = document.getElementById("type1").value;
+		
+		document.getElementById("filterForm5").action = "/viewBySpecificType_" + t1;  
+		document.getElementById("filterForm5").submit();
+	} 
+ 	
+ 	function randomImg(){
+ 		var img1 = "../images/rest1.jpg";
+ 		var img2 = "../images/rest2.jpg";
+ 		var img3 = "../images/rest3.jpg";
+ 		
+ 		var ranNum = Math.floor(Math.random() * 3) + 1;
+ 		
+ 		if (ranNum == 1){
+ 			document.getElementById("restImg").src = img1;
+ 		} else if (ranNum == 2){
+ 			document.getElementById("restImg").src = img2;
+ 		} else {
+ 			document.getElementById("restImg").src = img3;
+ 		}
+ 	}
+</script>
+</body>
+</html>

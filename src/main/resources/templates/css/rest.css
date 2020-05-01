@@ -1,0 +1,122 @@
+/* The following CSS styles the text and fonts. */
+
+
+* {
+    box-sizing: border-box;
+} 
+
+body {
+	background-color: #E2AC9B;
+    font-family: "Helvetica", Arial, sans-serif;
+}
+
+#container {
+	width:auto;
+	margin:10px;
+	background-color: #F7E1DA;
+	border:4px solid #214F34;
+}
+
+main {
+	padding-bottom: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 20px;
+	letter-spacing: 0.5px;
+}
+
+a.link {
+	color: white;
+	text-decoration: underline;
+}
+
+a.link:hover {
+	color: red;
+}
+	
+p {
+	color:#06391B;
+	font-size:1.1em;
+	text-indent:15px;
+	line-height:1.6; 
+	
+}
+
+p.intro::first-letter {
+	color:green;
+	font-size: x-large;
+}
+
+
+
+h1 {
+	text-align: center;
+	color:#06391B;
+	text-decoration: underline;
+}
+
+h5 {
+	padding: 5px;
+	text-align: center;
+	text-decoration: underline;
+}
+
+div.individual {
+	padding-top: 10px;
+	border-bottom: 2px solid #214F34;
+}
+
+div.individual2 {
+	padding-top: 10px;
+	border-bottom: 2px solid #214F34;
+	background-color: #C6E6D3;
+}
+
+div.individual3 {
+	padding-top: 10px;
+	border-top: 2px solid #214F34;
+	border-bottom: 2px solid #214F34;
+	background-color: #C6E6D3;
+}
+
+div.our1 {
+	border: 2px solid #214F34;
+	margin: 2px;
+	border-radius: 5px;
+	background-color: #C6E6D3;
+}
+
+div.current {
+	background-color: #C6E6D3;
+}
+
+footer {
+	border-bottom: 0.1px solid #214F34;
+	background-color: #367F4E;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img.floatright {
+	padding: 10px;
+	float: right;
+}
+
+img.floatleft {
+	padding: 10px;
+	float: left;
+}
+
+img.pad {
+	padding: 5px;
+	border: 2px solid black;
+	background-color:green;
+}
+
+.clearfloat{
+	clear:both;
+}
