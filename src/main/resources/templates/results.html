@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Restaurant Listings</title>
 <style type="text/css">
 table {
   border-spacing: 0;
@@ -29,6 +29,10 @@ body {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
 </head>
+
+
+<body>
+<div id="container">
 <header>
 	<section id="top"></section>
 	<img class="img-fluid center" src="../images/food-finder-banner.png" alt="Food Finder Banner" >
@@ -37,11 +41,11 @@ body {
 <nav class="navbar navbar-expand navbar-dark" style="background-color: #DD876D;">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="../viewAll">Find Restaurants</a>
+        <a class="nav-link" href="../index.html">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../viewAll">Find Restaurants <span class="sr-only">(current)</span></a>
       </li>
 	  <li class="nav-item">
         <a class="nav-link" href="../inputRestaurant">Add Your Restaurant</a>
@@ -50,9 +54,6 @@ body {
   </div>
 </nav>
 
-<body>
-
-<div id="container">
 <main>
 <form id="filterForm1">
 <p>Search by price:</p>
@@ -93,40 +94,37 @@ body {
 
 <form>
 
-<button type="button" onclick="viewAll">clear</button>
+<button type="button" onclick="viewAll">Clear</button>
 	<table id = "32">
-		<tr><th>ID</th>
 		<th><a href="/viewAll">Name</a></th>
 		<th><a href="/viewByPrice">Average Price</a></th>
 		<th><a href="/viewByRating">Rating</a></th>
 		<th><a href="/viewByType">Type</a></th>
 		<th><a href="/viewByPartySize">Party Size</a></th>
-		<th><a href="/viewByDistance">distance</a></th>
+		<th><a href="/viewByDistance">Distance</a></th>
 		<th><a href="/viewByKidsMenu">Has a Kids Menu</a></th>
 		<th><a href="/viewByStreet">Street</a></th>
-		<th><a href="/viewByCity">city</a></th>
-		<th><a href="/viewByState">state</a></th>
-		<th>edit</th>
-		<th>delete</th></tr>
-		<tr th:each="currentRestaurant : ${restaurants}">
-			<td th:text="${currentRestaurant.id}" />			
-			<td th:text="${currentRestaurant.name}"/>
-			<td th:text="${currentRestaurant.avgPrice}"/>
-			<td th:text="${currentRestaurant.rating}"/>
+		<th><a href="/viewByCity">City</a></th>
+		<th><a href="/viewByState">State</a></th>
+		<th>Edit</th>
+		<th>Delete</th></tr>
+		<tr th:each="currentRestaurant : ${restaurants}">		
+			<td><a th:href="@{/details/{id}(id=${currentRestaurant.id})}"><strong th:text="${currentRestaurant.name}"></strong></a></td>
+			<td th:text="${#numbers.formatCurrency(currentRestaurant.avgPrice)}"/>
+			<td th:text="${currentRestaurant.rating} + ' / 5'"/>
 			<td th:text="${currentRestaurant.restDetail.type}"/>
 			<td th:text="${currentRestaurant.restDetail.partySize}"/>
-			<td th:text="${currentRestaurant.restDetail.distance}"/>
-			<td th:text="${currentRestaurant.restDetail.hasKidsMenu}"/>
+			<td th:text="${currentRestaurant.restDetail.distance} + ' mi'"></td>
+			<td th:text="${#strings.capitalize(currentRestaurant.restDetail.hasKidsMenu)}"/>
 			<td th:text="${currentRestaurant.address.street}"/>
-			<td th:text="${currentRestaurant.address.city}"/>
-			<td th:text="${currentRestaurant.address.state}"/>
+			<td th:text="${#strings.capitalize(currentRestaurant.address.city)}"/>
+			<td th:text="${#strings.capitalize(currentRestaurant.address.state)}"/>
 			<td><a th:href="@{/edit/{id}(id=${currentRestaurant.id})}">Edit</a></td>
 			<td><a th:href="@{/delete/{id}(id=${currentRestaurant.id})}">Delete</a></td>
 		</tr>
 	</table>
 	
 </form>
-<a href="../inputRestaurant">Add a new restaurant</a>
 </main>
 </div>
 

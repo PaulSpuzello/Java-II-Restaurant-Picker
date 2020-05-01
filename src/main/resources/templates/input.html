@@ -3,7 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Add/ Edit Restaurant</title>
-<link rel="stylesheet" type="text/css" href="../css/rest.css"/>
+<link rel="stylesheet" type="text/css" href="css/rest.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
 <style type="text/css">
@@ -25,9 +25,15 @@ tr:nth-child(even) {
 body {
 	background: #F0C4B6 !important; 
 }
+
+
+
+
 </style>
 </head>
 
+<body>
+<div id="container">
 <header>
 	<section id="top"></section>
 	<img class="img-fluid center" src="../images/food-finder-banner.png" alt="Food Finder Banner" >
@@ -35,25 +41,21 @@ body {
 <nav class="navbar navbar-expand navbar-dark" style="background-color: #DD876D;">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html">Home </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../viewAll">Find Restaurants</a>
       </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="../inputRestaurant">Add Your Restaurant</a>
+	  <li class="nav-item active">
+        <a class="nav-link" href="../inputRestaurant">Add Your Restaurant <span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>
 </nav>
-<meta charset="UTF-8">
-<title>Insert New Restaurant</title>
-
-<body>
+<main>
 
 <form th:object="${newRestaurant}" th:action="@{/update/{id}(id=${newRestaurant.id})}" method=POST>
-
 Restaurant  Name: <input name="name" size="20" th:field="*{name}"><br />
 Average Price: <input name="avgPrice" size="20" th:field="*{avgPrice}"><br />
 Rating: <input name="rating" size="20" th:field="*{rating}"><br />
@@ -70,14 +72,9 @@ Has a kids Menu:<input name = "restDetail.hasKidsMenu" size= "20" th:field="*{re
 Description:<textarea name = "restDetail.descr" rows = "4" cols= "50" th:field="*{restDetail.descr}"></textarea> 
 
 
-
-
 <input name="Submit" type="submit" value="submit" />
 </form>
-
-
-
-<a href="../viewAll">View All Restaurants</a>
-
+</main>
+</div>
 </body>
 </html>
