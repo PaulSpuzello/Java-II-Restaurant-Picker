@@ -125,7 +125,11 @@ public class WebController {
 		if(repo.findAll().isEmpty()) {
 			return addNewRestaurant(model);
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> a4f4f7e7f36901f7e3ff4f626548d6d19312492e
 		model.addAttribute("restaurants", repo.findByType());
 		return "results";
 	}
