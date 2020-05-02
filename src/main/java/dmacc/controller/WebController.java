@@ -120,6 +120,15 @@ public class WebController {
 		return "results";
 	}
 	
+	@GetMapping("/viewByType")
+	public String viewAllByType(Model model) {
+		if(repo.findAll().isEmpty()) {
+			return addNewRestaurant(model);
+		}
+		model.addAttribute("restaurants", repo.findByType());
+		return "results";
+	}
+	
 	@GetMapping("/viewByKidsMenu")
 	public String viewAllByKidsMenu(Model model) {
 		if(repo.findAll().isEmpty()) {
@@ -194,5 +203,10 @@ public class WebController {
 	    return viewAllRestaurants(model);
 	}
 
-
+	@GetMapping("/details/{id}")
+	public String showRestaurantDetails(@PathVariable("id") long id, Model model) {
+		Restaurant c = repo.findById(id).orElse(null);
+		model.addAttribute("detailRestaurant", c);
+		return "details";
+	}
 }

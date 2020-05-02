@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Restaurant Details</title>
+<style type="text/css">
+
+body {
+	background: #F0C4B6 !important; 
+}
+
+}
+</style>
+<link rel="stylesheet" type="text/css" href="../css/rest.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+</head>
+
+<body onload="randomImg()">
+<div id="container">
+
+<header>
+	<section id="top"></section>
+	<img class="img-fluid center" src="../images/food-finder-banner.png" alt="Food Finder Banner" >
+</header>
+
+<nav class="navbar navbar-expand navbar-dark" style="background-color: #DD876D;">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../viewAll">Find Restaurants</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="../inputRestaurant">Add Your Restaurant</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<form th:object="${detailRestaurant}">
+<hr/>
+<img id="restImg" style="float:right; margin-right: 50px; border: solid #DD876D 5px" src="../images/rest1.jpg" alt="Restaurant Image" >
+<h1 style="text-align: left; margin-left: 10px;" th:text="${detailRestaurant.name}"></h1>
+
+<h3 style="text-decoration: underline; margin-left: 20px;">Location</h3>
+<p style="display:inline; margin-left: 30px;" th:text="${detailRestaurant.address.street}"></p>
+<p style="display:inline">-</p>
+<p style="display:inline" th:text="${detailRestaurant.address.city}"></p>
+<p style="display:inline">,</p>
+<p style="display:inline" th:text="${detailRestaurant.address.state}"></p>
+<p></p>
+<p style="display:inline; margin-left: 30px;"><em>Distance from you:</em></p>
+<strong><p style="display:inline;" th:text="${detailRestaurant.restDetail.distance}"></p></strong>
+<p style="display:inline"><strong>miles</strong></p>
+
+<p></p>
+<h3 style="text-decoration: underline; margin-left: 20px;">Description</h3>
+<p style= "margin-left: 30px;" th:text="${detailRestaurant.restDetail.descr}"></p>
+
+<hr/>
+<h4 style="display:inline; margin-left: 20px;">Food Type: (</h4>
+<h4 style="display:inline;" th:text=" ${detailRestaurant.restDetail.type}"></h4>
+<h4 style="display:inline;">)</h4>
+
+<hr/>
+<h4 style="display:inline; margin-left: 20px;">Average Meal Price: (</h4>
+<h4 style="display:inline;" th:text="${#numbers.formatCurrency(detailRestaurant.avgPrice)}"></h4>
+<h4 style="display:inline;">)</h4>
+
+<hr/>
+<h4 style="display:inline; margin-left: 20px;">Average Rating: (</h4>
+<h4 style="display:inline;" th:text="${detailRestaurant.rating}"></h4>
+<h4 style="display:inline;">/ 5 )</h4>
+
+<hr/>
+<h4 style="display:inline; margin-left: 20px;">Max Party Size: (</h4>
+<h4 style="display:inline;" th:text="${detailRestaurant.restDetail.partySize}"></h4>
+<h4 style="display:inline;">)</h4>
+
+<hr/>
+<h4 style="display:inline; margin-left: 20px;">Kids Menu: (</h4>
+<h4 style="display:inline;" th:text="${#strings.capitalize(detailRestaurant.restDetail.hasKidsMenu)}"></h4>
+<h4 style="display:inline;">)</h4>
+
+</form>
+<hr/>
+</main>
+</div>
+
+<script>
+ 	function randomImg(){
+ 		var img1 = "../images/rest1.jpg";
+ 		var img2 = "../images/rest2.jpg";
+ 		var img3 = "../images/rest3.jpg";
+ 		
+ 		var ranNum = Math.floor(Math.random() * 3) + 1;
+ 		
+ 		if (ranNum == 1){
+ 			document.getElementById("restImg").src = img1;
+ 		} else if (ranNum == 2){
+ 			document.getElementById("restImg").src = img2;
+ 		} else if (ranNum == 3) {
+ 			document.getElementById("restImg").src = img3;
+ 		} else if (ranNum == 4) {
+ 			document.getElementById("restImg").src = img4;
+ 		} else {
+ 			document.getElementById("restImg").src = img5;
+ 		}
+ 	}
+</script>
+</body>
+</html>
